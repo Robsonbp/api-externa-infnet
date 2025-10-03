@@ -1,18 +1,13 @@
 package br.edu.infnet.robsoncnpjapi.model.domain;
 
 public class CnpjOutput {
-	private String uf;
 	private String cnpj;
 	private String razaoSocial;
 	private String nomeFantasia;
 	private String descricaoSituacaoCadastral;
+	private String enderecoCompleto;
 	
-	public String getUf() {
-		return uf;
-	}
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
+
 	public String getCnpj() {
 		return cnpj;
 	}
@@ -36,5 +31,11 @@ public class CnpjOutput {
 	}
 	public void setDescricaoSituacaoCadastral(String descricaoSituacaoCadastral) {
 		this.descricaoSituacaoCadastral = descricaoSituacaoCadastral;
+	}
+	public String getEnderecoCompleto() {
+		return enderecoCompleto;
+	}
+	public void setEnderecoCompleto(String enderecoCompleto) {
+		this.enderecoCompleto = enderecoCompleto;
 	}
 }

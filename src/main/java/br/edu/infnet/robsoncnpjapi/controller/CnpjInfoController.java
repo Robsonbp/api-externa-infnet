@@ -10,7 +10,7 @@ import br.edu.infnet.robsoncnpjapi.model.domain.CnpjOutput;
 import br.edu.infnet.robsoncnpjapi.model.service.CnpjInfoService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/cnpj")
 public class CnpjInfoController {
 	
 	private final CnpjInfoService cnpjInfoService;

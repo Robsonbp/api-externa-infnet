@@ -1,6 +1,9 @@
 package br.edu.infnet.robsoncnpjapi.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CnpjInfo {
+
 	private String uf;
 	private String cep;
 	private String cnpj;
@@ -8,10 +11,20 @@ public class CnpjInfo {
 	private String bairro;
 	private String logradouro;
 	private String numero;
+	
+	@JsonProperty("razao_social")
 	private String razaoSocial;
+	
+	@JsonProperty("nome_fantasia")
 	private String nomeFantasia;
+	
+	@JsonProperty("ddd_telefone_1")
 	private String telefone1;
+	
+	@JsonProperty("situacao_cadastral")
 	private String situacaoCadastral;
+	
+	@JsonProperty("descricao_situacao_cadastral")
 	private String descricaoSituacaoCadastral;
 	
 	

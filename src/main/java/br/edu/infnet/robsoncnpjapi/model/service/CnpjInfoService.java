@@ -16,26 +16,32 @@ public class CnpjInfoService {
 	}
 	
 	public CnpjOutput buscarCnpjInfo(String cnpj) {
-		//Não pode ser nulo
 		if (cnpj == null) {
 			throw new IllegalArgumentException("CNPJ não pode ser nulo");
 		}
 		
-		//Tratar string para tirar pontos,hifens e barras
-		String cnpjTratado = cnpj.replace(".", "").replace("-", "").replace("/", "");
+		String cnpjTratado = cnpj.replace(".", "").replace("-", "");
 		
 		//Validar se tem 14 dígitos
 		if (!cnpjTratado.matches("^\\d{14}$")) {
 			throw new IllegalArgumentException("CNPJ não é válido");
 		}
 		
-		//Buscar informações no BrasilAPI
-		CnpjInfo cnpjInfo =  brasilApiFeignClient.findByCnpj(cnpj);
-			//Validações de resposta
+		CnpjInfo cnpjInfo =  brasilApiFeignClient.findByCnpj(cnpjTratado);
+		//Validações de resposta
+		
+		//logradouro, numero - bairro, municipio/uf - cep
+		String enderecoCompleto = String.format(
+				"%s, %s - %s - %s/%s - %s",
+				cnpjInfo.getLogradouro(), cnpjInfo.getNumero(), cnpjInfo.getBairro(), cnpjInfo.getMunicipio(), cnpjInfo.getUf(), cnpjInfo.getCep()
+		);
 		
 		CnpjOutput cnpjOutput = new CnpjOutput();
 		cnpjOutput.setCnpj(cnpjInfo.getCnpj());
+		cnpjOutput.setRazaoSocial(cnpjInfo.getRazaoSocial());
+		cnpjOutput.setNomeFantasia(cnpjInfo.getNomeFantasia());
 		cnpjOutput.setDescricaoSituacaoCadastral(cnpjInfo.getDescricaoSituacaoCadastral());
+		cnpjOutput.setEnderecoCompleto(enderecoCompleto);
 		
 		return cnpjOutput;
 	}
